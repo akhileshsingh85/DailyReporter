@@ -1,0 +1,24 @@
+<div id="settings">
+
+
+<%# $Id$ %>
+  <p>
+    <%= content_tag(:label, l(:label_issue_status_mapping)) %>  <br/>
+    <br/><%= content_tag(:label, l(:label_issue_new_status)) %><%= text_field_tag 'settings[status_new]', @settings['status_new'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_in_progress_status)) %><%= text_field_tag 'settings[status_in_progress]', @settings['status_in_progress'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_completed_status)) %><%= text_field_tag 'settings[status_completed]', @settings['status_completed'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_closed_status)) %><%= text_field_tag 'settings[status_closed]', @settings['status_closed'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_rework_status)) %><%= text_field_tag 'settings[status_rework]', @settings['status_rework'], :size => 15 %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:label_issue_priority_mapping)) %>  <br/>
+    <br/><%= content_tag(:label, l(:label_issue_low_priority)) %><%= text_field_tag 'settings[priority_low]', @settings['priority_low'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_normal_priority)) %><%= text_field_tag 'settings[priority_normal]', @settings['priority_normal'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_high_priority)) %><%= text_field_tag 'settings[priority_high]', @settings['priority_high'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_urgent_priority)) %><%= text_field_tag 'settings[priority_urgent]', @settings['priority_urgent'], :size => 15 %>
+    <br/><%= content_tag(:label, l(:label_issue_immediate_priority)) %><%= text_field_tag 'settings[priority_immediate]', @settings['priority_immediate'], :size => 15 %>
+  </p>
+
+
+</div>

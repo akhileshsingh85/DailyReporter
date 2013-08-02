@@ -1,0 +1,64 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'css/ui.daterangepicker.css', :plugin => 'daily_reporter' %>
+    <%= stylesheet_link_tag 'css/chart.css', :plugin => 'daily_reporter' %>
+<% end %>
+
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'js/date.js', :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag 'js/daterangepicker.jQuery.js', :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/highcharts.js", :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/exporting.js", :plugin => 'daily_reporter' %>
+<% end %>
+<script type="text/javascript">
+    $(function () {
+        $('#selectedDates').daterangepicker({arrows: true});
+    });
+</script>
+<input type="hidden" name="projectId" value="<%= @project_id%> ">
+<input type="hidden" name="start_date" value="<%= @start_date %>">
+<input type="hidden" name="end_date" value="<%= @end_date %>">
+<div style="float: left;width: 100%;height: 50px;">
+  <a class="toggle-setting rightFloat" style="margin-top: 14px;margin-left: 10px;">
+    <%= image_tag("package_settings.ico", :alt => "Settings", :plugin => 'daily_reporter', :size => '20x20') %>
+  </a>
+
+  <div>
+
+  <div class="rightFloat" style="padding-top: 7px;">
+    <%= form_tag("daily-report?project_id="+@project_id, :method => "post") do %>
+        <div class="rightFloat">
+          <%= button_tag 'Submit', :class => "submit_button"%>
+        </div>
+        <div class="rightFloat" style="margin-top: 4px;height: 21px;margin-right: 6px;">
+          <input type="text" value="<%= @date_range %>" id="selectedDates" name="selectedDates"/>
+        </div>
+
+    <% end %>
+    <div class="rightFloat" style="margin-top: 2px;">
+      <h3 style="color: #80b0da"> Select Date Range </h3>
+    </div>
+  </div>
+
+</div>
+  </div>
+<% if !@error.nil? && !@error.empty? %>
+    <h4 style="color: RED"><%= @error %></h4>
+<% end %>
+
+<div class="chart-settings">
+  <div class="option_combo">
+    <ul class="sort_container">
+
+    </ul>
+  </div>
+</div>
+<% if @error.nil? %>
+    <% if @date_range.nil? %>
+        <div>
+          <%= render :partial => ("chart") %>
+        </div>
+    <% end %>
+<% end %>
+<div>
+  <%= render :partial => ("chart") if !@date_range.nil? && !@date_range.empty? %>
+</div>

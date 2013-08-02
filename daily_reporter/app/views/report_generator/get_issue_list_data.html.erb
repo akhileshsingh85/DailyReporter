@@ -1,0 +1,21 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'css/chart.css', :plugin => 'daily_reporter' %>
+<% end %>
+
+  <h2><%=  @title_name %> : <%= @selected_date %></h2>
+  <div>
+    <div class="div-id-list"><b>Issue Id</b></div>
+    <div class="div-summary-list"><b>Summary</b></div>
+    <div class="div-name-list"><b>Assigned To</b></div>
+    <div class="div-name-list"><b>Filed By</b></div>
+  </div>
+  <div>
+    <% @issue_list_data.each do |issue, issue_summary, issue_assigned_to_id, issue_author_id| %>
+        <div style="clear: both"></div>
+        <div class="div-id-list"><%= link_to issue , issue_path(issue) %></div>
+        <div class="div-summary-list"><%= issue_summary %></div>
+        <div class="div-name-list"><%= issue_assigned_to_id %></div>
+        <div class="div-name-list"><%= issue_author_id %></div>
+    <% end %>
+  </div>
+

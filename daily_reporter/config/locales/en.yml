@@ -1,0 +1,19 @@
+# English strings go here for Rails i18n
+en:
+  # my_label: "My label"
+  permission_view_reports: "View Reports"
+  permission_generate_reports: "Generate Reports"
+
+  label_issue_status_mapping: "Issue status mapping for Redmine"
+  label_issue_new_status: "New Issue Status"
+  label_issue_in_progress_status: "In-Progress Issue Status"
+  label_issue_completed_status: "Completed Issue Status"
+  label_issue_closed_status: "Closed Issue Status"
+  label_issue_rework_status: "Rework Issue Status"
+
+  label_issue_priority_mapping: "Issue priority mapping for Redmine"
+  label_issue_low_priority: "Low Priority"
+  label_issue_normal_priority: "Normal Priority"
+  label_issue_high_priority: "High Priority"
+  label_issue_urgent_priority: "Urgent Priority"
+  label_issue_immediate_priority: "Immediate Priority"

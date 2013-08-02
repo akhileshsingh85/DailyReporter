@@ -1,0 +1,4 @@
+= daily_reporter
+
+Daily Reporter is a reporting plugin useful to generate Graph report on Daily , Weakly , monthly and yearly wise.
+The report gets generated with a very interactive charts which has options to hide/show graph , rearrange graph.

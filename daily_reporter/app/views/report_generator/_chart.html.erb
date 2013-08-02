@@ -1,0 +1,101 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag "js/pieChart.js",:plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/area-chart.js", :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/mixed-chart.js", :plugin => 'daily_reporter' %>    
+    <% if request.method.eql?"POST" %>
+        <%= javascript_include_tag "js/stacked-chart.js",:plugin => 'daily_reporter' %>
+        <%= javascript_include_tag "js/open-issues-by-priority.js",:plugin => 'daily_reporter' %>
+        <%= javascript_include_tag "js/open-issues-for-project-module.js",:plugin => 'daily_reporter' %>
+        <%= javascript_include_tag "js/rework-percentage-chart.js",:plugin => 'daily_reporter' %>
+    <% end %>
+    <%= javascript_include_tag "js/main.js", :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/rework-by-dev.js", :plugin => 'daily_reporter' %>
+    <%= javascript_include_tag "js/defects-by-author.js", :plugin => 'daily_reporter' %>
+<% end %>
+
+<%= javascript_tag do %>
+    pieTitleName = 'Bug Count Graph';
+    yAxisTitleName = 'Defects';
+    velocity_Title = 'Velocity of Reduction';
+    mixedTitleName = 'Defect Arrival Kill rate';
+    reworkByDevTitle = 'Rework By Developers'
+    defectsByAuthorTitle = 'Defects for Verification'
+    openIssuesForProjectModule_Title = 'Open Issues by Module/Category'
+
+    piaChartData =  <%= @pieData.to_json.html_safe %>;
+    velocityData = <%= @velocityData.html_safe %>;
+    categoryData = <%= @categoryData.to_json.html_safe %> ;
+    reworkByDevData = <%= @reworkByDev.to_json.html_safe %>
+    defectsByAuthorData = <%= @defectsByAuthor.to_json.html_safe %>
+
+    arrivalData = <%= @daily_data_hash[StatusWrapper::NEW].to_json.html_safe %>;
+    activeData = <%= @openIssueCount.to_json.html_safe %>;
+    killData = <%= @daily_data_hash[StatusWrapper::CLOSED].to_json.html_safe %>;
+
+    <% if request.method.eql?"POST" %>
+        stackedTitleName = 'Day-wise Graph';
+        openIssuesByPriority_Title = 'Open Issues By Priority';
+        reworkPercentageTitle = 'Rework Percentage';
+
+        dateRange = '<%= @from_date %> To <%= @till_date %>';
+        seriesData = <%= @seriesData.html_safe %>;
+
+        openIssuesByPriority_Data = <%= @openIssuesByPriorityData.html_safe %>;
+
+        openIssuesForProjectModule_Data = <%= @openIssuesForProjectModuleData.html_safe %>;
+
+        reworkPercentageData = <%= @reworkPercentageData.html_safe %> ;
+    <% end %>
+<% end %>
+<div class="chart_container">
+  <div class="chartboxleft">
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="pie"></a>
+    <div id="pie-container" chart_title="Total Count Graph"></div>
+  </div>
+  <div class="chartboxleft" >
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="mixed"></a>
+    <div id="mixed-container" chart_title="Defect Arrival Kill rate"></div>
+  </div>
+
+  <div class="chartboxleft" >
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="area"></a>
+    <div id="area-container" chart_title="Velocity of Reduction"></div>
+  </div>
+  <div class="chartboxleft">
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="pie"></a>
+    <div id="rework-by-dev-container" chart_title="Rework By Developers"></div>
+  </div>
+  <div class="chartboxleft">
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="pie"></a>
+    <div id="defects-to-verify" chart_title="Defects for Verfication"></div>
+  </div>
+  <% if request.method.eql?"POST" %>
+  <div class="chartboxleft" >
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="stacked"></a>
+    <div id="stacked-container" chart_title="Todays Update"></div>
+  </div>
+
+  <div class="chartboxleft" >
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="oibp"></a>
+    <div id="open-issues-by-priority-container" chart_title="Open Issues By Priority"></div>
+  </div>
+
+  <div class="chartboxleft">
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="oifpm"></a>
+    <div id="open-issues-for-project-module-container" chart_title="Open Issues For Project Module"></div>
+  </div>
+  <div class="chartboxleft" >
+    <a class="drag-chart" ></a>
+    <a class="resize-chart" chart="rework"></a>
+    <div id="rework-container" chart_title="Rework Percentage"></div>
+  </div>
+  <%end%>
+</div>
